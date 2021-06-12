@@ -60,7 +60,7 @@ remove_attendence.addEventListener("click", function () {
     attendence_number--;
     attendence_block.removeChild(assesment_review[assesment_review.length - 1]);
   } else if (attendence_block.childElementCount == 1) {
-    alert("Attendence block should be atleast two!");
+    alert("Attendence block should be atleast one!");
   }
 });
 
