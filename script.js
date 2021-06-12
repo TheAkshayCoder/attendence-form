@@ -236,13 +236,13 @@ submit.addEventListener("click", function () {
     formDataGlobal["numberOfSessionRescheduled"] = sessions_rescheduled.value;
     formDataGlobal["attendence"] = attendenceValue;
 
-    register(formDataGlobal)
-      .then((data) => {
-        console.log("promise completed", data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    // register(formDataGlobal)
+    //   .then((data) => {
+    //     console.log("promise completed", data);
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //   });
   }
 });
 
