@@ -5,7 +5,10 @@ let attendence_number = 1;
 var formDataGlobal = {};
 
 var status;
+var id;
 
+id = window.location.href.charAt(window.location.href.length - 1);
+formDataGlobal["id"] = id;
 const attendence_block = document.getElementById(
   "accordionPanelsStayOpenExample"
 );
@@ -53,7 +56,6 @@ remove_attendence.addEventListener("click", function () {
 
   console.log("remove", count);
   const attendenceElm = document.getElementsByClassName("accordion-item");
-  // console.log(attendenceElm)
   let assesment_review = document.getElementsByClassName("accordion-item");
 
   if (attendence_block.childElementCount > 1) {
@@ -209,6 +211,30 @@ submit.addEventListener("click", function () {
       let status1 = document.getElementById("attendence-" + (i + 1));
       console.log(formDate[i].value, status1.value);
     }
+
+    let attendenceValue = [];
+    for (i = 1; i <= attendence_block.childElementCount; i++) {
+      let attendence_date = document.getElementById(
+        "attendence_date_" + i
+      ).value;
+      // console.log('att. date',attendence_date)
+      let attendence_status = document.getElementById("attendence-" + i);
+      let attendence_status_value =
+        attendence_status.options[attendence_status.selectedIndex].text;
+      // console.log('att. status',attendence_status_value)
+      var attendenceObj = {
+        id: i,
+        date: attendence_date,
+        status: attendence_status_value,
+      };
+
+      attendenceValue.push(attendenceObj);
+    }
+
+    formDataGlobal["numberOfSessionCompleted"] = No_of_sessions_completed.value;
+    formDataGlobal["numberOfMissedSession"] = missed_sessions.value;
+    formDataGlobal["numberOfSessionRescheduled"] = sessions_rescheduled.value;
+    formDataGlobal["attendence"] = attendenceValue;
 
     register(formDataGlobal)
       .then((data) => {
