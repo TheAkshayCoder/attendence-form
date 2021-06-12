@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Evaluation repot form</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    
+
+</head>
+
+<body>
+    <div class="container">
+
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="multistep-container">
+                    <div class="multistep-form-area">
+                        <!-- logo -->
+                        <div id="img">
+                            <img src="img/BeSingular Colour Logo.png" id='logo' alt="logo" srcset="">
+                            <h1>STUDENT EVALUATION REPORT FORM</h1>
+                        </div>
+                        <!-- logo -->
+
+
+                        <!-- start -->
+                        <div class="form-box active">
+
+                            <!-- form -->
+                            <form action="submit" class="form-content-box" id="form">
+                                <div class="form-group">
+                                    <label for="">No. of Sessions completed</label>
+                                    <input type="number" name="numberOfSessionCompleted" id="No._of_sessions_completed"
+                                        class="form-control" required>
+                                    <div class="error" id="No_of_sessions_completed_error"></div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="">No. of missed sessions</label>
+                                    <input type="number" name="numberOfMissedSession" id="missed_sessions"
+                                        class="form-control" required>
+                                    <div class="error" id="missed_sessions_error"></div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="">Number of sessions rescheduled</label>
+                                    <input type="number" name="numberOfSessionRescheduled" id="sessions_rescheduled"
+                                        class="form-control" required>
+                                    <div class="error" id="sessions_rescheduled_error"></div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="accordion" id="accordionPanelsStayOpenExample">
+                                        <div class="accordion-item" id="1">
+                                            <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+                                                <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                                    data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="false"
+                                                    aria-controls="panelsStayOpen-collapseOne">
+                                                    <label for="">Attendence</label>
+                                                </button>
+                                            </h2>
+                                            <div id="panelsStayOpen-collapseOne"
+                                                class="accordion-collapse collapse show"
+                                                aria-labelledby="panelsStayOpen-headingOne">
+                                                <div class="accordion-body">
+                                                    <form action="" id="innerFormAttendece_1">
+                                                        <input type="date" placeholder="date" name="attendence[1]"
+                                                            id='attendence_date_1' class="form-control datesInput">
+                                                        <select name="attendence[1][status]" id="attendence-1"
+                                                            class="form-control status">
+                                                            <option value="Status">--Status--</option>
+                                                            <option value="Present">Present</option>
+                                                            <option value="Absent">Absent</option>
+                                                        </select>
+                                                        <div class="error" id="attendence_1_error"></div>
+                                                    </form>
+
+                                                   
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="button">
+                                    <button type="button" class="btn btn-success" id="add_attendence">Add</button>
+                                    <button type="button" class="btn btn-danger" id="remove_attendence">Remove</button>
+                                </div>
+                            </form>
+                            <!-- form -->
+                        </div>
+                        <!-- end -->
+
+                        <div class="button-row">
+
+                            <button value="Submit" class="submit btn active" id="submit">Submit</button>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+        crossorigin="anonymous"></script>
+<script src="script.js"></script>
+
+
+</html>
