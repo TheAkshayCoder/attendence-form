@@ -8,7 +8,7 @@ var status;
 var id;
 
 id = window.location.href;
-var fullId = id.substring(53, indexOf("ok"));
+var fullId = id.substring(id.indexOf("=",52), id.indexOf("ok",53));
 formDataGlobal["id"] = fullId;
 const attendence_block = document.getElementById(
   "accordionPanelsStayOpenExample"
@@ -140,22 +140,22 @@ submit.addEventListener("click", function () {
   if (
     sessions_completed_value < 0 ||
     sessions_completed_value > 10 ||
-    sessions_completed_value === NaN
+    sessions_completed_value === NaN || No_of_sessions_completed.value.length<1
   ) {
     No_of_sessions_completed_error.classList.add("active");
-    No_of_sessions_completed_error.innerHTML = `**Please enter the right no. of sessions`;
+    No_of_sessions_completed_error.innerHTML = `**Please enter the right no. of sessions (greater then 0 but less then 10)`;
   } else if (
     missed_sessions_value < 0 ||
-    missed_sessions_value > sessions_completed_value
+    missed_sessions_value > sessions_completed_value || missed_sessions.value.length<1
   ) {
     missed_sessions_error.classList.add("active");
-    missed_sessions_error.innerHTML = `**Please enter the right number of missed sessions`;
+    missed_sessions_error.innerHTML = `**Please enter the right number of missed sessions (greater then 0 but less then 10)`;
   } else if (
     sessions_rescheduled_value < 0 ||
-    sessions_rescheduled_value > sessions_completed_value
+    sessions_rescheduled_value > sessions_completed_value || sessions_rescheduled.value.length<1
   ) {
     sessions_rescheduled_error.classList.add("active");
-    sessions_rescheduled_error.innerHTML = `**Please enter the right no. of rescheduled sessions`;
+    sessions_rescheduled_error.innerHTML = `**Please enter the right no. of rescheduled sessions (greater then 0 but less then 10)`;
   }
   if (sessions_completed_value >= 0 && sessions_completed_value <= 10) {
     No_of_sessions_completed_error.classList.remove("active");
