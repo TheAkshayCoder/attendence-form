@@ -139,39 +139,39 @@ submit.addEventListener("click", function () {
 
 
   if (
-    sessions_completed_value < 1 ||
+    sessions_completed_value < 0 ||
     sessions_completed_value > 10 || sessions_completed_value===NaN
   ) {
     No_of_sessions_completed_error.classList.add("active");
     No_of_sessions_completed_error.innerHTML = `**Please enter the right no. of sessions`;
   } else if (
-    missed_sessions_value < 1 ||
+    missed_sessions_value < 0 ||
     missed_sessions_value > sessions_completed_value
   ) {
     missed_sessions_error.classList.add("active");
     missed_sessions_error.innerHTML = `**Please enter the right number of missed sessions`;
   } else if (
-    sessions_rescheduled_value < 1 ||
+    sessions_rescheduled_value < 0 ||
     sessions_rescheduled_value > sessions_completed_value
   ) {
     sessions_rescheduled_error.classList.add("active");
     sessions_rescheduled_error.innerHTML = `**Please enter the right no. of rescheduled sessions`;
   }
   if (
-    sessions_completed_value >= 1 &&
+    sessions_completed_value >= 0 &&
     sessions_completed_value <= 10
   ) {
     No_of_sessions_completed_error.classList.remove("active");
     // console.log(missed_sessions.value < No_of_sessions_completed.value);
   }
   if (
-    missed_sessions_value >= 1 &&
+    missed_sessions_value >= 0 &&
     missed_sessions_value < No_of_sessions_completed.value
   ) {
     missed_sessions_error.classList.remove("active");
   }
   if (
-    sessions_rescheduled_value >= 1 &&
+    sessions_rescheduled_value >= 0 &&
     sessions_rescheduled_value < sessions_completed_value
   ) {
     sessions_rescheduled_error.classList.remove("active");
@@ -223,7 +223,7 @@ submit.addEventListener("click", function () {
     sessions_completed_value
   ) {
     
-    console.log('all done',missed_sessions_value + sessions_rescheduled_value)
+    // console.log('all done',missed_sessions_value + sessions_rescheduled_value)
     for (i = 0; i < attendence_number; i++) {
       
       let status1 = document.getElementById("attendence-" + (i + 1));
