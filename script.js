@@ -8,7 +8,7 @@ var status;
 var id;
 
 id = window.location.href;
-var fullId = id.substring(id.indexOf("=",52), id.indexOf("ok",53));
+var fullId = id.substring(id.indexOf("=",52)+1, id.indexOf("ok",53));
 formDataGlobal["id"] = fullId;
 const attendence_block = document.getElementById(
   "accordionPanelsStayOpenExample"
