@@ -7,8 +7,12 @@ var formDataGlobal = {};
 var status;
 var id;
 
-id = window.location.href.charAt(window.location.href.length - 1);
-formDataGlobal["id"] = id;
+id = window.location.href;
+var fullId = id.substring(
+  id.lastIndexOf("=") + 1, 
+  id.lastIndexOf('"')
+);
+formDataGlobal["id"] = fullId;
 const attendence_block = document.getElementById(
   "accordionPanelsStayOpenExample"
 );
