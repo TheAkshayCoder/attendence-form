@@ -8,10 +8,7 @@ var status;
 var id;
 
 id = window.location.href;
-var fullId = id.substring(
-  id.lastIndexOf("=") + 1, 
-  id.lastIndexOf('"')
-);
+var fullId = id.substring(53, indexOf("ok"));
 formDataGlobal["id"] = fullId;
 const attendence_block = document.getElementById(
   "accordionPanelsStayOpenExample"
@@ -134,17 +131,16 @@ for (j = 0; j < attendence_number; j++) {}
 // console.log(status1)
 const submit = document.getElementById("submit");
 submit.addEventListener("click", function () {
-
   var missed_sessions_value = parseInt(missed_sessions.value, 10);
   var sessions_rescheduled_value = parseInt(sessions_rescheduled.value, 10);
   var sessions_completed_value = parseInt(No_of_sessions_completed.value, 10);
 
-  console.log(typeof sessions_rescheduled_value)
-
+  console.log(typeof sessions_rescheduled_value);
 
   if (
     sessions_completed_value < 0 ||
-    sessions_completed_value > 10 || sessions_completed_value===NaN
+    sessions_completed_value > 10 ||
+    sessions_completed_value === NaN
   ) {
     No_of_sessions_completed_error.classList.add("active");
     No_of_sessions_completed_error.innerHTML = `**Please enter the right no. of sessions`;
@@ -161,10 +157,7 @@ submit.addEventListener("click", function () {
     sessions_rescheduled_error.classList.add("active");
     sessions_rescheduled_error.innerHTML = `**Please enter the right no. of rescheduled sessions`;
   }
-  if (
-    sessions_completed_value >= 0 &&
-    sessions_completed_value <= 10
-  ) {
+  if (sessions_completed_value >= 0 && sessions_completed_value <= 10) {
     No_of_sessions_completed_error.classList.remove("active");
     // console.log(missed_sessions.value < No_of_sessions_completed.value);
   }
@@ -180,7 +173,6 @@ submit.addEventListener("click", function () {
   ) {
     sessions_rescheduled_error.classList.remove("active");
   }
-  
 
   // console.log(typeof missed_sessions_value)
   if (
@@ -188,12 +180,14 @@ submit.addEventListener("click", function () {
     sessions_completed_value
   ) {
     // console.log(missed_sessions.value+sessions_rescheduled.value)
-    let x=missed_sessions_value+sessions_rescheduled_value
-    console.log(typeof x)
+    let x = missed_sessions_value + sessions_rescheduled_value;
+    console.log(typeof x);
     missed_sessions_error.classList.add("active");
     sessions_rescheduled_error.classList.add("active");
-    missed_sessions_error.innerHTML="**Sum of missed and rescheduled session should be less then total sessions"
-    sessions_rescheduled_error.innerHTML="**Sum of missed and rescheduled session should be less then total sessions"
+    missed_sessions_error.innerHTML =
+      "**Sum of missed and rescheduled session should be less then total sessions";
+    sessions_rescheduled_error.innerHTML =
+      "**Sum of missed and rescheduled session should be less then total sessions";
   }
 
   count = attendence_number;
@@ -201,17 +195,26 @@ submit.addEventListener("click", function () {
     let status1 = document.getElementById("attendence-" + (i + 1));
     // console.log(status1.value)
     var date = Date.parse(formDate[i].value);
-    if (formDate[i].value == "" || status1.value == "Status" || date>new Date() ) {
+    if (
+      formDate[i].value == "" ||
+      status1.value == "Status" ||
+      date > new Date()
+    ) {
       console.log("count ", count);
       var date = Date.parse(formDate[i].value);
-      console.log(date)
+      console.log(date);
       var attendenceDateError = document.getElementById(
         "attendence_" + (i + 1) + "_error"
       );
       attendenceDateError.style.display = "flex";
-      attendenceDateError.style.justifyContent="center"
-      attendenceDateError.innerHTML = "**Please Enter the required Fields with right input";
-    } else if (formDate[i].value !== "" && status1.value !== "Status" && date<=new Date() ) {
+      attendenceDateError.style.justifyContent = "center";
+      attendenceDateError.innerHTML =
+        "**Please Enter the required Fields with right input";
+    } else if (
+      formDate[i].value !== "" &&
+      status1.value !== "Status" &&
+      date <= new Date()
+    ) {
       count--;
       console.log("count decrease ", count);
       var attendenceDateError = document.getElementById(
@@ -223,13 +226,12 @@ submit.addEventListener("click", function () {
   }
 
   if (
-    count == 0 && missed_sessions_value + sessions_rescheduled_value <=
-    sessions_completed_value
+    count == 0 &&
+    missed_sessions_value + sessions_rescheduled_value <=
+      sessions_completed_value
   ) {
-    
     // console.log('all done',missed_sessions_value + sessions_rescheduled_value)
     for (i = 0; i < attendence_number; i++) {
-      
       let status1 = document.getElementById("attendence-" + (i + 1));
       console.log(formDate[i].value, status1.value);
     }
@@ -257,7 +259,7 @@ submit.addEventListener("click", function () {
     formDataGlobal["numberOfMissedSession"] = missed_sessions.value;
     formDataGlobal["numberOfSessionRescheduled"] = sessions_rescheduled.value;
     formDataGlobal["attendence"] = attendenceValue;
-    console.log(formDataGlobal)
+    console.log(formDataGlobal);
     // register(formDataGlobal)
     //   .then((data) => {
     //     console.log("promise completed", data);
