@@ -1,3 +1,31 @@
+const APIURL="https://api.github.com/users/"
+
+async function gitHubProfile(name){
+    const response=await fetch(APIURL+name)
+    const data = await response.json()
+    console.log(data)
+}
+
+
+var topicsCoveredList= ['JavaScript','Array','Loops','Objects','conditions'] 
+
+var topicsCoveredCheckbox=document.getElementById('topicsCoveredCheckbox')
+var topicCoveredCheckList = 0
+for (i=0;i<topicsCoveredList.length;i++) {
+topicCoveredCheckList++
+  // console.log(topicsCoveredList[i])
+  var checkBoxDiv= document.createElement('div')
+  checkBoxDiv.classList.add('form-check')
+  checkBoxDiv.classList.add('form-check-inline')
+  checkBoxDiv.innerHTML=`
+  <input class="form-check-input" type="checkbox" id="inlineCheckbox${i+1}"
+      value="${topicsCoveredList[i]}">
+  <label class="form-check-label" for="inlineCheckbox${i+1}">${topicsCoveredList[i]}</label>
+`
+topicsCoveredCheckbox.appendChild(checkBoxDiv)
+}
+
+console.log(topicCoveredCheckList)
 var count = 1;
 
 let attendence_number = 1;
@@ -190,6 +218,23 @@ submit.addEventListener("click", function () {
       "**Sum of missed and rescheduled session should be less then total sessions";
   }
 
+  for (i=0;i <topicsCoveredList.length;i++) {
+    let allTopicsCoveredCheckbox = document.getElementById(`inlineCheckbox${i+1}`)
+    if (allTopicsCoveredCheckbox.checked==false) {
+      topicCoveredCheckList--
+    } 
+  }
+
+  const topicsCoveredCheckboxError=document.getElementById('topicsCoveredCheckboxError')
+  if (topicCoveredCheckList==0){
+    topicsCoveredCheckboxError.classList.add('active')
+  }else {
+    topicsCoveredCheckboxError.classList.remove('active')
+  }
+
+  
+  // const topicsCoveredCheckboxError= document.getElementById('topicsCoveredCheckboxError')
+
   count = attendence_number;
   for (i = 0; i < attendence_number; i++) {
     let status1 = document.getElementById("attendence-" + (i + 1));
@@ -228,7 +273,7 @@ submit.addEventListener("click", function () {
   if (
     count == 0 &&
     missed_sessions_value + sessions_rescheduled_value <=
-      sessions_completed_value
+      sessions_completed_value && topicCoveredCheckList!==0
   ) {
     // console.log('all done',missed_sessions_value + sessions_rescheduled_value)
     for (i = 0; i < attendence_number; i++) {
@@ -245,7 +290,10 @@ submit.addEventListener("click", function () {
       let attendence_status = document.getElementById("attendence-" + i);
       let attendence_status_value =
         attendence_status.options[attendence_status.selectedIndex].text;
-      // console.log('att. status',attendence_status_value)
+        
+
+
+
       var attendenceObj = {
         id: i,
         date: attendence_date,
@@ -255,18 +303,29 @@ submit.addEventListener("click", function () {
       attendenceValue.push(attendenceObj);
     }
 
+    let topicsCoveredValue = [];
+    for (i=0;i <topicsCoveredList.length;i++ ){
+      let allTopicsCoveredCheckbox = document.getElementById(`inlineCheckbox${i+1}`)
+      if (allTopicsCoveredCheckbox.checked) {
+        topicsCoveredValue.push(allTopicsCoveredCheckbox.value)
+      } else {
+        console.log('no')
+      }
+    }
+
     formDataGlobal["numberOfSessionCompleted"] = No_of_sessions_completed.value;
     formDataGlobal["numberOfMissedSession"] = missed_sessions.value;
     formDataGlobal["numberOfSessionRescheduled"] = sessions_rescheduled.value;
+    formDataGlobal["topicsCovered"] = topicsCoveredValue
     formDataGlobal["attendence"] = attendenceValue;
     console.log(formDataGlobal);
-    // register(formDataGlobal)
-    //   .then((data) => {
-    //     console.log("promise completed", data);
-    //   })
-    //   .catch((err) => {
-    //     console.log(err);
-    //   });
+    register(formDataGlobal)
+      .then((data) => {
+        console.log("promise completed", data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 });
 
@@ -287,7 +346,7 @@ async function register(formDataGlobal) {
     var data = JSON.parse(text);
     if (data.status == 200) {
       console.log("created successfully");
-      window.location.href = data.reportcardUrl;
+      // window.location.href = data.reportcardUrl;
     }
     console.log(data);
   });

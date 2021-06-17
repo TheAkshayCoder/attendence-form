@@ -76,6 +76,15 @@ li span:nth-child(2){
     width: 190px;
 }
 
+.topicsCovered{
+    display: flex;
+    flex-direction: column;
+}
+
+.topicsCoveredHeading{
+    padding-bottom: 1rem;
+}
+
 
 #progress{
     /* height: 0.6rem; */
@@ -165,7 +174,8 @@ li span:nth-child(2){
 #attendence_1_error.active,
 #attendence_2_error.active,
 #attendence_3_error.active,
-.active_attendence
+.active_attendence,
+#topicsCoveredCheckboxError.active
 {
     display: flex;
     justify-content: center;
