@@ -1,10 +1,4 @@
-const APIURL = "https://api.github.com/users/";
 
-async function gitHubProfile(name) {
-  const response = await fetch(APIURL + name);
-  const data = await response.json();
-  console.log(data);
-}
 
 var topicsCoveredList = [
   "JavaScript",
@@ -45,6 +39,15 @@ var id;
 id = window.location.href;
 var fullId = id.substring(id.indexOf("=", 52) + 1, id.indexOf("ok", 53));
 formDataGlobal["id"] = fullId;
+
+
+async function dataApi() {
+  const response = await fetch(`https://besingularlms.herokuapp.com/getSingleUser/${fullId}`);
+}
+
+dataApi()
+
+
 const attendence_block = document.getElementById(
   "accordionPanelsStayOpenExample"
 );
