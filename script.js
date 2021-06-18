@@ -369,7 +369,7 @@ async function register(formDataGlobal) {
     }
     // console.log(data.reportcardUrl)
     // const container = document.getElementsByClassName('container')
-    window.location.href=`https://theakshaycoder.github.io/Edit-and-export-report-card-page/?id=${id}ok`
+    window.location.href=`https://theakshaycoder.github.io/Edit-and-export-report-card-page/?id=${fullId}ok`
     // container[0].innerHTML = `<iframe src="${data.reportcardUrl}" frameborder="0"></iframe>`
     
     console.log(data);
