@@ -1,31 +1,38 @@
-const APIURL="https://api.github.com/users/"
+const APIURL = "https://api.github.com/users/";
 
-async function gitHubProfile(name){
-    const response=await fetch(APIURL+name)
-    const data = await response.json()
-    console.log(data)
+async function gitHubProfile(name) {
+  const response = await fetch(APIURL + name);
+  const data = await response.json();
+  console.log(data);
 }
 
+var topicsCoveredList = [
+  "JavaScript",
+  "Array",
+  "Loops",
+  "Objects",
+  "conditions",
+];
 
-var topicsCoveredList= ['JavaScript','Array','Loops','Objects','conditions'] 
-
-var topicsCoveredCheckbox=document.getElementById('topicsCoveredCheckbox')
-var topicCoveredCheckList = 0
-for (i=0;i<topicsCoveredList.length;i++) {
-topicCoveredCheckList++
+var topicsCoveredCheckbox = document.getElementById("topicsCoveredCheckbox");
+var topicCoveredCheckList = 0;
+for (i = 0; i < topicsCoveredList.length; i++) {
+  topicCoveredCheckList++;
   // console.log(topicsCoveredList[i])
-  var checkBoxDiv= document.createElement('div')
-  checkBoxDiv.classList.add('form-check')
-  checkBoxDiv.classList.add('form-check-inline')
-  checkBoxDiv.innerHTML=`
-  <input class="form-check-input" type="checkbox" id="inlineCheckbox${i+1}"
+  var checkBoxDiv = document.createElement("div");
+  checkBoxDiv.classList.add("form-check");
+  checkBoxDiv.classList.add("form-check-inline");
+  checkBoxDiv.innerHTML = `
+  <input class="form-check-input" type="checkbox" id="inlineCheckbox${i + 1}"
       value="${topicsCoveredList[i]}">
-  <label class="form-check-label" for="inlineCheckbox${i+1}">${topicsCoveredList[i]}</label>
-`
-topicsCoveredCheckbox.appendChild(checkBoxDiv)
+  <label class="form-check-label" for="inlineCheckbox${i + 1}">${
+    topicsCoveredList[i]
+  }</label>
+`;
+  topicsCoveredCheckbox.appendChild(checkBoxDiv);
 }
 
-console.log(topicCoveredCheckList)
+// console.log(topicCoveredCheckList);
 var count = 1;
 
 let attendence_number = 1;
@@ -36,7 +43,7 @@ var status;
 var id;
 
 id = window.location.href;
-var fullId = id.substring(id.indexOf("=",52)+1, id.indexOf("ok",53));
+var fullId = id.substring(id.indexOf("=", 52) + 1, id.indexOf("ok", 53));
 formDataGlobal["id"] = fullId;
 const attendence_block = document.getElementById(
   "accordionPanelsStayOpenExample"
@@ -168,19 +175,22 @@ submit.addEventListener("click", function () {
   if (
     sessions_completed_value < 0 ||
     sessions_completed_value > 10 ||
-    sessions_completed_value === NaN || No_of_sessions_completed.value.length<1
+    sessions_completed_value === NaN ||
+    No_of_sessions_completed.value.length < 1
   ) {
     No_of_sessions_completed_error.classList.add("active");
     No_of_sessions_completed_error.innerHTML = `**Please enter the right no. of sessions (greater then 0 but less then 10)`;
   } else if (
     missed_sessions_value < 0 ||
-    missed_sessions_value > sessions_completed_value || missed_sessions.value.length<1
+    missed_sessions_value > sessions_completed_value ||
+    missed_sessions.value.length < 1
   ) {
     missed_sessions_error.classList.add("active");
     missed_sessions_error.innerHTML = `**Please enter the right number of missed sessions (greater then 0 but less then 10)`;
   } else if (
     sessions_rescheduled_value < 0 ||
-    sessions_rescheduled_value > sessions_completed_value || sessions_rescheduled.value.length<1
+    sessions_rescheduled_value > sessions_completed_value ||
+    sessions_rescheduled.value.length < 1
   ) {
     sessions_rescheduled_error.classList.add("active");
     sessions_rescheduled_error.innerHTML = `**Please enter the right no. of rescheduled sessions (greater then 0 but less then 10)`;
@@ -217,22 +227,30 @@ submit.addEventListener("click", function () {
     sessions_rescheduled_error.innerHTML =
       "**Sum of missed and rescheduled session should be less then total sessions";
   }
+  topicCoveredCheckList=topicsCoveredList.length
+  // console.log("before check ",topicCoveredCheckList)
 
-  for (i=0;i <topicsCoveredList.length;i++) {
-    let allTopicsCoveredCheckbox = document.getElementById(`inlineCheckbox${i+1}`)
-    if (allTopicsCoveredCheckbox.checked==false) {
-      topicCoveredCheckList--
-    } 
+  for (i = 0; i < topicsCoveredList.length; i++) {
+    let allTopicsCoveredCheckbox = document.getElementById(
+      `inlineCheckbox${i + 1}`
+    );
+    if (allTopicsCoveredCheckbox.checked == false) {
+      topicCoveredCheckList--;
+    }
   }
 
-  const topicsCoveredCheckboxError=document.getElementById('topicsCoveredCheckboxError')
-  if (topicCoveredCheckList==0){
-    topicsCoveredCheckboxError.classList.add('active')
-  }else {
-    topicsCoveredCheckboxError.classList.remove('active')
+  const topicsCoveredCheckboxError = document.getElementById(
+    "topicsCoveredCheckboxError"
+  );
+  if (topicCoveredCheckList == 0) {
+    topicsCoveredCheckboxError.classList.add("active");
+    topicsCoveredCheckboxError.innerHTML = `**Please select at least one topicsCovered`;
+    // console.log("after check ",topicCoveredCheckList)
+  } if(topicCoveredCheckList !==0) {
+    topicsCoveredCheckboxError.classList.remove("active");
+    // console.log("after check ",topicCoveredCheckList)
   }
 
-  
   // const topicsCoveredCheckboxError= document.getElementById('topicsCoveredCheckboxError')
 
   count = attendence_number;
@@ -273,7 +291,8 @@ submit.addEventListener("click", function () {
   if (
     count == 0 &&
     missed_sessions_value + sessions_rescheduled_value <=
-      sessions_completed_value && topicCoveredCheckList!==0
+      sessions_completed_value &&
+    topicCoveredCheckList !== 0
   ) {
     // console.log('all done',missed_sessions_value + sessions_rescheduled_value)
     for (i = 0; i < attendence_number; i++) {
@@ -290,9 +309,6 @@ submit.addEventListener("click", function () {
       let attendence_status = document.getElementById("attendence-" + i);
       let attendence_status_value =
         attendence_status.options[attendence_status.selectedIndex].text;
-        
-
-
 
       var attendenceObj = {
         id: i,
@@ -304,19 +320,21 @@ submit.addEventListener("click", function () {
     }
 
     let topicsCoveredValue = [];
-    for (i=0;i <topicsCoveredList.length;i++ ){
-      let allTopicsCoveredCheckbox = document.getElementById(`inlineCheckbox${i+1}`)
+    for (i = 0; i < topicsCoveredList.length; i++) {
+      let allTopicsCoveredCheckbox = document.getElementById(
+        `inlineCheckbox${i + 1}`
+      );
       if (allTopicsCoveredCheckbox.checked) {
-        topicsCoveredValue.push(allTopicsCoveredCheckbox.value)
+        topicsCoveredValue.push(allTopicsCoveredCheckbox.value);
       } else {
-        console.log('no')
+        console.log("no");
       }
     }
 
     formDataGlobal["numberOfSessionCompleted"] = No_of_sessions_completed.value;
     formDataGlobal["numberOfMissedSession"] = missed_sessions.value;
     formDataGlobal["numberOfSessionRescheduled"] = sessions_rescheduled.value;
-    formDataGlobal["topicsCovered"] = topicsCoveredValue
+    formDataGlobal["topicsCovered"] = topicsCoveredValue;
     formDataGlobal["attendence"] = attendenceValue;
     console.log(formDataGlobal);
     register(formDataGlobal)
