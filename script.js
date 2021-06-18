@@ -284,7 +284,6 @@ submit.addEventListener("click", function () {
         "attendence_" + (i + 1) + "_error"
       );
       attendenceDateError.style.display = "none";
-      // console.log(formDate[i].value, status1.value);
     }
   }
 
@@ -364,8 +363,12 @@ async function register(formDataGlobal) {
     var data = JSON.parse(text);
     if (data.status == 200) {
       console.log("created successfully");
-      // window.location.href = data.reportcardUrl;
     }
+    // console.log(data.reportcardUrl)
+    // const container = document.getElementsByClassName('container')
+    window.location.href=`https://theakshaycoder.github.io/Edit-and-export-report-card-page/?id=${id}ok`
+    // container[0].innerHTML = `<iframe src="${data.reportcardUrl}" frameborder="0"></iframe>`
+    
     console.log(data);
   });
 }
