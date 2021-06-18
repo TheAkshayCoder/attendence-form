@@ -333,6 +333,12 @@ submit.addEventListener("click", function () {
       }
     }
 
+    var todayDate = new Date()
+    let date= todayDate.getDate()
+    let month=todayDate.getMonth()
+    let year=todayDate.getFullYear()
+
+    formDataGlobal['dor']= `${date}/${month}/${year}`
     formDataGlobal["numberOfSessionCompleted"] = No_of_sessions_completed.value;
     formDataGlobal["numberOfMissedSession"] = missed_sessions.value;
     formDataGlobal["numberOfSessionRescheduled"] = sessions_rescheduled.value;
