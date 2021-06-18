@@ -1,4 +1,9 @@
+const No_of_sessions_completed = document.getElementById(
+  "No._of_sessions_completed"
+);
+console.log(No_of_sessions_completed.value)
 
+// var no_sessionsCompleted_value = parseInt(No_of_sessions_completed.value, 10);
 
 var topicsCoveredList = [
   "JavaScript",
@@ -51,68 +56,75 @@ dataApi()
 const attendence_block = document.getElementById(
   "accordionPanelsStayOpenExample"
 );
-let add_attendence = document.getElementById("add_attendence");
-add_attendence.addEventListener("click", function () {
-  attendence_number++;
-  count++;
-  console.log("add", count);
-  let attendence = document.createElement("div");
-  attendence.classList.add("accordion-item");
-  attendence.setAttribute("id", attendence_number);
-  attendence.innerHTML = `
-  <h2 class="accordion-header" id="panelsStayOpen-headingThree">
-    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
-        <label for="">Attendence</label>
-    </button>
-  </h2>
-  <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingThree">
-    <div class="accordion-body">
-    <form id='innerFormAttendece_${attendence_number}'>
-        <input type="date" placeholder="date" name='attendence[${attendence_number}]' id='attendence_date_${attendence_number}' name="Date" class="form-control datesInput">
-        <select name="attendence[${attendence_number}][status]" id="attendence-${attendence_number}" class="form-control status">
-            <option value="Status">--Status--</option>
-            <option value="Present">Present</option>
-            <option value="Absent">Absent</option>
-        </select>
-        </form>
-        <div class="error" id="attendence_${attendence_number}_error"></div>
-    </div>
-  </div>`;
-  attendence_block.appendChild(attendence);
-  return attendence_number;
-});
+// let add_attendence = document.getElementById("add_attendence");
+// add_attendence.addEventListener("click", function () {
 
-const next = document.getElementById("next");
-const remove_attendence = document.getElementById("remove_attendence");
+//   console.log(No_of_sessions_completed.value)
+//   // console.log(no_sessionsCompleted_value)
+//   if (attendence_number<No_of_sessions_completed.value){
+//     attendence_number++;
+//     count++;
+//     console.log("add", count);
+//     let attendence = document.createElement("div");
+//     attendence.classList.add("accordion-item");
+//     attendence.setAttribute("id", attendence_number);
+//     attendence.innerHTML = `
+//     <h2 class="accordion-header" id="panelsStayOpen-headingThree">
+//       <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
+//           <label for="">Attendence</label>
+//       </button>
+//     </h2>
+//     <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingThree">
+//       <div class="accordion-body">
+//       <form id='innerFormAttendece_${attendence_number}'>
+//           <input type="date" placeholder="date" name='attendence[${attendence_number}]' id='attendence_date_${attendence_number}' name="Date" class="form-control datesInput">
+//           <select name="attendence[${attendence_number}][status]" id="attendence-${attendence_number}" class="form-control status">
+//               <option value="Status">--Status--</option>
+//               <option value="Present">Present</option>
+//               <option value="Absent">Absent</option>
+//           </select>
+//           </form>
+//           <div class="error" id="attendence_${attendence_number}_error"></div>
+//       </div>
+//     </div>`;
+//     attendence_block.appendChild(attendence);
+//     return attendence_number;
+//   }
 
-let remove_btn = document.getElementsByClassName("btn-danger");
-// console.log(remove_btn)
+//   else{
+//     alert(`You can only enter ${attendence_number} of attendence block`)
+//   }
+// });
 
-remove_attendence.addEventListener("click", function () {
-  if (count > 1) {
-    count--;
-  }
+// const next = document.getElementById("next");
+// const remove_attendence = document.getElementById("remove_attendence");
 
-  console.log("remove", count);
-  const attendenceElm = document.getElementsByClassName("accordion-item");
-  let assesment_review = document.getElementsByClassName("accordion-item");
+// let remove_btn = document.getElementsByClassName("btn-danger");
+// // console.log(remove_btn)
 
-  if (attendence_block.childElementCount > 1) {
-    attendence_number--;
-    attendence_block.removeChild(assesment_review[assesment_review.length - 1]);
-  } else if (attendence_block.childElementCount == 1) {
-    alert("Attendence block should be atleast one!");
-  }
-});
+// remove_attendence.addEventListener("click", function () {
+//   if (count > 1) {
+//     count--;
+//   }
+
+//   console.log("remove", count);
+//   const attendenceElm = document.getElementsByClassName("accordion-item");
+//   let assesment_review = document.getElementsByClassName("accordion-item");
+
+//   if (attendence_block.childElementCount > 1) {
+//     attendence_number--;
+//     attendence_block.removeChild(assesment_review[assesment_review.length - 1]);
+//   } else if (attendence_block.childElementCount == 1) {
+//     alert("Attendence block should be atleast one!");
+//   }
+// });
 
 // Validation
 
 const No_of_sessions_completed_error = document.getElementById(
   "No_of_sessions_completed_error"
 );
-const No_of_sessions_completed = document.getElementById(
-  "No._of_sessions_completed"
-);
+
 const missed_sessions_error = document.getElementById("missed_sessions_error");
 const missed_sessions = document.getElementById("missed_sessions");
 const sessions_rescheduled_error = document.getElementById(
@@ -173,7 +185,10 @@ submit.addEventListener("click", function () {
   var sessions_rescheduled_value = parseInt(sessions_rescheduled.value, 10);
   var sessions_completed_value = parseInt(No_of_sessions_completed.value, 10);
 
-  console.log(typeof sessions_rescheduled_value);
+  // console.log(typeof sessions_rescheduled_value);
+  console.log('hello')
+  console.log(missed_sessions.value.length)
+
 
   if (
     sessions_completed_value < 0 ||
@@ -198,19 +213,19 @@ submit.addEventListener("click", function () {
     sessions_rescheduled_error.classList.add("active");
     sessions_rescheduled_error.innerHTML = `**Please enter the right no. of rescheduled sessions (greater then 0 but less then 10)`;
   }
-  if (sessions_completed_value >= 0 && sessions_completed_value <= 10) {
+  if (sessions_completed_value >= 0 && sessions_completed_value <= No_of_sessions_completed.value ) {
     No_of_sessions_completed_error.classList.remove("active");
     // console.log(missed_sessions.value < No_of_sessions_completed.value);
   }
   if (
     missed_sessions_value >= 0 &&
-    missed_sessions_value < No_of_sessions_completed.value
+    missed_sessions_value <= No_of_sessions_completed.value
   ) {
     missed_sessions_error.classList.remove("active");
   }
   if (
     sessions_rescheduled_value >= 0 &&
-    sessions_rescheduled_value < sessions_completed_value
+    sessions_rescheduled_value <= No_of_sessions_completed.value
   ) {
     sessions_rescheduled_error.classList.remove("active");
   }
@@ -380,4 +395,77 @@ async function register(formDataGlobal) {
     
     console.log(data);
   });
+}
+
+function attendeceSet(){
+
+  attendence_block.innerHTML=`<div class="accordion-item" id="1">
+  <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+      <button class="accordion-button" type="button" data-bs-toggle="collapse"
+          data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="false"
+          aria-controls="panelsStayOpen-collapseOne">
+          <label for="">Attendence</label>
+      </button>
+  </h2>
+  <div id="panelsStayOpen-collapseOne"
+      class="accordion-collapse collapse show"
+      aria-labelledby="panelsStayOpen-headingOne">
+      <div class="accordion-body">
+          <form action="" id="innerFormAttendece_1">
+              <input type="date" placeholder="date" name="attendence[1]"
+                  id='attendence_date_1' class="form-control datesInput">
+              <select name="attendence[1][status]" id="attendence-1"
+                  class="form-control status">
+                  <option value="Status">--Status--</option>
+                  <option value="Present">Present</option>
+                  <option value="Absent">Absent</option>
+              </select>
+              <div class="error" id="attendence_1_error"></div>
+          </form>
+
+
+
+      </div>
+  </div>
+</div>`
+
+attendence_number=1
+console.log('outside',attendence_number)
+  if (attendence_number<No_of_sessions_completed.value){
+    console.log(attendence_number)
+  for (i=1;i<No_of_sessions_completed.value;i++){
+    // console.log(i)
+    attendence_number++;
+        count++;
+        // console.log("add", count);
+        let attendence = document.createElement("div");
+        attendence.classList.add("accordion-item");
+        attendence.setAttribute("id", attendence_number);
+        attendence.innerHTML = `
+        <h2 class="accordion-header" id="panelsStayOpen-headingThree">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
+              <label for="">Attendence</label>
+          </button>
+        </h2>
+        <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingThree">
+          <div class="accordion-body">
+          <form id='innerFormAttendece_${attendence_number}'>
+              <input type="date" placeholder="date" name='attendence[${attendence_number}]' id='attendence_date_${attendence_number}' name="Date" class="form-control datesInput">
+              <select name="attendence[${attendence_number}][status]" id="attendence-${attendence_number}" class="form-control status">
+                  <option value="Status">--Status--</option>
+                  <option value="Present">Present</option>
+                  <option value="Absent">Absent</option>
+              </select>
+              </form>
+              <div class="error" id="attendence_${attendence_number}_error"></div>
+          </div>
+        </div>`;
+        attendence_block.appendChild(attendence);
+  
+  }
+  console.log('after loop',attendence_number)
+  } else if(No_of_sessions_completed.value==null){
+    alert('null')
+  }
+
 }

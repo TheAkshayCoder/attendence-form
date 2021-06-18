@@ -35,7 +35,7 @@
                                 <div class="form-group">
                                     <label for="">No. of Sessions completed</label>
                                     <input type="number" name="numberOfSessionCompleted" id="No._of_sessions_completed"
-                                        class="form-control" required>
+                                        class="form-control" onkeyup="attendeceSet()" required>
                                     <div class="error" id="No_of_sessions_completed_error"></div>
                                 </div>
                                 <div class="form-group">
@@ -96,10 +96,10 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="button">
+                                <!-- <div class="button">
                                     <button type="button" class="btn btn-success" id="add_attendence">Add</button>
                                     <button type="button" class="btn btn-danger" id="remove_attendence">Remove</button>
-                                </div>
+                                </div> -->
                             </form>
                             <!-- form -->
                         </div>
