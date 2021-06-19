@@ -371,6 +371,7 @@ submit.addEventListener("click", function () {
 });
 
 async function register(formDataGlobal) {
+  document.getElementById('loader').style.display='block'
   console.log("what we need", formDataGlobal);
   var response = await fetch(
     "https://besingularauto.herokuapp.com/createStudentRecord",
@@ -384,13 +385,13 @@ async function register(formDataGlobal) {
     }
   );
   response.text().then((text) => {
+    
     var data = JSON.parse(text);
     if (data.status == 200) {
+     // document.getElementById('loader').style.display='none'
       console.log("created successfully");
+      window.location.href=`https://theakshaycoder.github.io/Edit-and-export-report-card-page/?id=${fullId}ok`
     }
-    // console.log(data.reportcardUrl)
-    // const container = document.getElementsByClassName('container')
-    window.location.href=`https://theakshaycoder.github.io/Edit-and-export-report-card-page/?id=${fullId}ok`
     // container[0].innerHTML = `<iframe src="${data.reportcardUrl}" frameborder="0"></iframe>`
     
     console.log(data);
