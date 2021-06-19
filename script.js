@@ -5,31 +5,31 @@ console.log(No_of_sessions_completed.value)
 
 // var no_sessionsCompleted_value = parseInt(No_of_sessions_completed.value, 10);
 
-var topicsCoveredList = [
-  "JavaScript",
-  "Array",
-  "Loops",
-  "Objects",
-  "conditions",
-];
+// var topicsCoveredList = [
+//   "JavaScript",
+//   "Array",
+//   "Loops",
+//   "Objects",
+//   "conditions",
+// ];
 
-var topicsCoveredCheckbox = document.getElementById("topicsCoveredCheckbox");
-var topicCoveredCheckList = 0;
-for (i = 0; i < topicsCoveredList.length; i++) {
-  topicCoveredCheckList++;
-  // console.log(topicsCoveredList[i])
-  var checkBoxDiv = document.createElement("div");
-  checkBoxDiv.classList.add("form-check");
-  checkBoxDiv.classList.add("form-check-inline");
-  checkBoxDiv.innerHTML = `
-  <input class="form-check-input" type="checkbox" id="inlineCheckbox${i + 1}"
-      value="${topicsCoveredList[i]}">
-  <label class="form-check-label" for="inlineCheckbox${i + 1}">${
-    topicsCoveredList[i]
-  }</label>
-`;
-  topicsCoveredCheckbox.appendChild(checkBoxDiv);
-}
+// var topicsCoveredCheckbox = document.getElementById("topicsCoveredCheckbox");
+// var topicCoveredCheckList = 0;
+// for (i = 0; i < topicsCoveredList.length; i++) {
+//   topicCoveredCheckList++;
+//   // console.log(topicsCoveredList[i])
+//   var checkBoxDiv = document.createElement("div");
+//   checkBoxDiv.classList.add("form-check");
+//   checkBoxDiv.classList.add("form-check-inline");
+//   checkBoxDiv.innerHTML = `
+//   <input class="form-check-input" type="checkbox" id="inlineCheckbox${i + 1}"
+//       value="${topicsCoveredList[i]}">
+//   <label class="form-check-label" for="inlineCheckbox${i + 1}">${
+//     topicsCoveredList[i]
+//   }</label>
+// `;
+//   topicsCoveredCheckbox.appendChild(checkBoxDiv);
+// }
 
 // console.log(topicCoveredCheckList);
 var count = 1;
@@ -245,31 +245,44 @@ submit.addEventListener("click", function () {
     sessions_rescheduled_error.innerHTML =
       "**Sum of missed and rescheduled session should be less then total sessions";
   }
-  topicCoveredCheckList=topicsCoveredList.length
-  // console.log("before check ",topicCoveredCheckList)
+  // topicCoveredCheckList=topicsCoveredList.length
+  // // console.log("before check ",topicCoveredCheckList)
 
-  for (i = 0; i < topicsCoveredList.length; i++) {
-    let allTopicsCoveredCheckbox = document.getElementById(
-      `inlineCheckbox${i + 1}`
-    );
-    if (allTopicsCoveredCheckbox.checked == false) {
-      topicCoveredCheckList--;
-    }
-  }
+  // for (i = 0; i < topicsCoveredList.length; i++) {
+  //   let allTopicsCoveredCheckbox = document.getElementById(
+  //     `inlineCheckbox${i + 1}`
+  //   );
+  //   if (allTopicsCoveredCheckbox.checked == false) {
+  //     topicCoveredCheckList--;
+  //   }
+  // }
 
-  const topicsCoveredCheckboxError = document.getElementById(
-    "topicsCoveredCheckboxError"
-  );
-  if (topicCoveredCheckList == 0) {
-    topicsCoveredCheckboxError.classList.add("active");
-    topicsCoveredCheckboxError.innerHTML = `**Please select at least one topicsCovered`;
-    // console.log("after check ",topicCoveredCheckList)
-  } if(topicCoveredCheckList !==0) {
-    topicsCoveredCheckboxError.classList.remove("active");
-    // console.log("after check ",topicCoveredCheckList)
-  }
+  // const topicsCoveredCheckboxError = document.getElementById(
+  //   "topicsCoveredCheckboxError"
+  // );
+  // if (topicCoveredCheckList == 0) {
+  //   topicsCoveredCheckboxError.classList.add("active");
+  //   topicsCoveredCheckboxError.innerHTML = `**Please select at least one topicsCovered`;
+  //   // console.log("after check ",topicCoveredCheckList)
+  // } if(topicCoveredCheckList !==0) {
+  //   topicsCoveredCheckboxError.classList.remove("active");
+  //   // console.log("after check ",topicCoveredCheckList)
+  // }
 
   // const topicsCoveredCheckboxError= document.getElementById('topicsCoveredCheckboxError')
+  const topicsCovered=document.getElementById('topics_covered')
+  const topicsCoveredCheckboxError=document.getElementById('topicsCoveredCheckboxError')
+  if (topicsCovered.value==""){
+    
+    topicsCoveredCheckboxError.classList.add('active')
+    topicsCoveredCheckboxError.innerHTML=`**Please enter the topics covered`
+
+  }else{
+    
+    topicsCoveredCheckboxError.classList.remove('remove')
+
+  }
+
 
   count = attendence_number;
   for (i = 0; i < attendence_number; i++) {
@@ -309,7 +322,7 @@ submit.addEventListener("click", function () {
     count == 0 &&
     missed_sessions_value + sessions_rescheduled_value <=
       sessions_completed_value &&
-    topicCoveredCheckList !== 0
+    topicsCovered.value !== ""
   ) {
     // console.log('all done',missed_sessions_value + sessions_rescheduled_value)
     for (i = 0; i < attendence_number; i++) {
@@ -336,17 +349,17 @@ submit.addEventListener("click", function () {
       attendenceValue.push(attendenceObj);
     }
 
-    let topicsCoveredValue = [];
-    for (i = 0; i < topicsCoveredList.length; i++) {
-      let allTopicsCoveredCheckbox = document.getElementById(
-        `inlineCheckbox${i + 1}`
-      );
-      if (allTopicsCoveredCheckbox.checked) {
-        topicsCoveredValue.push(allTopicsCoveredCheckbox.value);
-      } else {
-        console.log("no");
-      }
-    }
+    // let topicsCoveredValue = [];
+    // for (i = 0; i < topicsCoveredList.length; i++) {
+    //   let allTopicsCoveredCheckbox = document.getElementById(
+    //     `inlineCheckbox${i + 1}`
+    //   );
+    //   if (allTopicsCoveredCheckbox.checked) {
+    //     topicsCoveredValue.push(allTopicsCoveredCheckbox.value);
+    //   } else {
+    //     console.log("no");
+    //   }
+    // }
 
     var todayDate = new Date()
     let date= todayDate.getDate()
@@ -357,7 +370,7 @@ submit.addEventListener("click", function () {
     formDataGlobal["numberOfSessionCompleted"] = No_of_sessions_completed.value;
     formDataGlobal["numberOfMissedSession"] = missed_sessions.value;
     formDataGlobal["numberOfSessionRescheduled"] = sessions_rescheduled.value;
-    formDataGlobal["topicsCovered"] = topicsCoveredValue;
+    formDataGlobal["topicsCovered"] = topicsCovered.value;
     formDataGlobal["attendence"] = attendenceValue;
     console.log(formDataGlobal);
     register(formDataGlobal)
