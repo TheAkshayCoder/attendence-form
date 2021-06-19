@@ -353,7 +353,7 @@ submit.addEventListener("click", function () {
     let month=todayDate.getMonth()
     let year=todayDate.getFullYear()
 
-    formDataGlobal['dor']= `${date}/${month}/${year}`
+    formDataGlobal['dor']= `${date}/${month+1}/${year}`
     formDataGlobal["numberOfSessionCompleted"] = No_of_sessions_completed.value;
     formDataGlobal["numberOfMissedSession"] = missed_sessions.value;
     formDataGlobal["numberOfSessionRescheduled"] = sessions_rescheduled.value;
@@ -388,7 +388,7 @@ async function register(formDataGlobal) {
     
     var data = JSON.parse(text);
     if (data.status == 200) {
-     // document.getElementById('loader').style.display='none'
+    //  document.getElementById('loader').style.display='none'
       console.log("created successfully");
       window.location.href=`https://theakshaycoder.github.io/Edit-and-export-report-card-page/?id=${fullId}ok`
     }
