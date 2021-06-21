@@ -33,7 +33,7 @@ console.log(No_of_sessions_completed.value)
 
 // console.log(topicCoveredCheckList);
 var count = 1;
-
+var topics=1;
 let attendence_number = 1;
 
 var formDataGlobal = {};
@@ -270,33 +270,39 @@ submit.addEventListener("click", function () {
   // }
 
   // const topicsCoveredCheckboxError= document.getElementById('topicsCoveredCheckboxError')
-  const topicsCovered=document.getElementById('topics_covered')
-  const topicsCoveredCheckboxError=document.getElementById('topicsCoveredCheckboxError')
-  if (topicsCovered.value==""){
+  
+  // for (i=1;i<=attendence_number;i++){
     
-    topicsCoveredCheckboxError.classList.add('active')
-    topicsCoveredCheckboxError.innerHTML=`**Please enter the topics covered`
-
-  }else{
-    
-    topicsCoveredCheckboxError.classList.remove('remove')
-
-  }
+  //   let topicsCovered=document.getElementById('topics_covered'+i)
+  //   let topicsCoveredCheckboxError=document.getElementById('topicsCoveredCheckboxError'+i)
+  //   if (topicsCovered.value==""){
+      
+  //     topicsCoveredCheckboxError.classList.add('active')
+  //     topicsCoveredCheckboxError.innerHTML=`**Please enter the topics covered`
+  
+  //   }else{
+      
+  //     topicsCoveredCheckboxError.classList.remove('remove')
+  
+  //   }
+  // }
 
 
   count = attendence_number;
   for (i = 0; i < attendence_number; i++) {
     let status1 = document.getElementById("attendence-" + (i + 1));
-    // console.log(status1.value)
+    let topicsCovered=document.getElementById('topics_covered'+(i + 1))
+    let topicsCoveredCheckboxError=document.getElementById('topicsCoveredCheckboxError'+(i + 1))
+    // console.log(topicsCovered)
     var date = Date.parse(formDate[i].value);
     if (
       formDate[i].value == "" ||
       status1.value == "Status" ||
       date > new Date()
     ) {
-      console.log("count ", count);
+      // console.log("count ", count);
       var date = Date.parse(formDate[i].value);
-      console.log(date);
+      // console.log(date);
       var attendenceDateError = document.getElementById(
         "attendence_" + (i + 1) + "_error"
       );
@@ -304,7 +310,7 @@ submit.addEventListener("click", function () {
       attendenceDateError.style.justifyContent = "center";
       attendenceDateError.innerHTML =
         "**Please Enter the required Fields with right input";
-    } else if (
+    } if (
       formDate[i].value !== "" &&
       status1.value !== "Status" &&
       date <= new Date()
@@ -315,14 +321,19 @@ submit.addEventListener("click", function () {
         "attendence_" + (i + 1) + "_error"
       );
       attendenceDateError.style.display = "none";
+    } if (topicsCovered.value==""){
+      topicsCoveredCheckboxError.classList.add('active')
+      topicsCoveredCheckboxError.innerHTML=`**Please enter the Topics covered value`
+    } if (topicsCovered.value!==""){
+      topics--
+      topicsCoveredCheckboxError.classList.remove('active')
     }
   }
 
   if (
     count == 0 &&
     missed_sessions_value + sessions_rescheduled_value <=
-      sessions_completed_value &&
-    topicsCovered.value !== ""
+      sessions_completed_value && topics == 0
   ) {
     // console.log('all done',missed_sessions_value + sessions_rescheduled_value)
     for (i = 0; i < attendence_number; i++) {
@@ -339,11 +350,13 @@ submit.addEventListener("click", function () {
       let attendence_status = document.getElementById("attendence-" + i);
       let attendence_status_value =
         attendence_status.options[attendence_status.selectedIndex].text;
+      let topicCoveredValue = document.getElementById("topics_covered"+i).value
 
       var attendenceObj = {
         id: i,
         date: attendence_date,
         status: attendence_status_value,
+        topicsCovered:topicCoveredValue
       };
 
       attendenceValue.push(attendenceObj);
@@ -370,16 +383,16 @@ submit.addEventListener("click", function () {
     formDataGlobal["numberOfSessionCompleted"] = No_of_sessions_completed.value;
     formDataGlobal["numberOfMissedSession"] = missed_sessions.value;
     formDataGlobal["numberOfSessionRescheduled"] = sessions_rescheduled.value;
-    formDataGlobal["topicsCovered"] = topicsCovered.value;
+    // formDataGlobal["topicsCovered"] = topicsCovered.value;
     formDataGlobal["attendence"] = attendenceValue;
     console.log(formDataGlobal);
-    register(formDataGlobal)
-      .then((data) => {
-        console.log("promise completed", data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    // register(formDataGlobal)
+    //   .then((data) => {
+    //     console.log("promise completed", data);
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //   });
   }
 });
 
@@ -426,6 +439,7 @@ function attendeceSet(){
       aria-labelledby="panelsStayOpen-headingOne">
       <div class="accordion-body">
           <form action="" id="innerFormAttendece_1">
+          <div class="innerAttendenceBlock">
               <input type="date" placeholder="date" name="attendence[1]"
                   id='attendence_date_1' class="form-control datesInput">
               <select name="attendence[1][status]" id="attendence-1"
@@ -434,9 +448,20 @@ function attendeceSet(){
                   <option value="Present">Present</option>
                   <option value="Absent">Absent</option>
               </select>
+            </div>
               <div class="error" id="attendence_1_error"></div>
+              <div class="form-group topicsCovered" >
+                                    <div class="topicsCoveredHeading">
+                                        <label for="topics-covered" >Topics Covered</label>
+                                        <input type="text" name="topicsCovered" id="topics_covered1" class="form-control" required="">
+                                    </div>
+                                    <div class="topicsCoveredCheckbox" id="topicsCoveredCheckbox">
+                                        
+                                    </div>
+                                    <div class="error" id="topicsCoveredCheckboxError1"></div>
+                                </div>
           </form>
-
+          
 
 
       </div>
@@ -451,6 +476,7 @@ console.log('outside',attendence_number)
     // console.log(i)
     attendence_number++;
         count++;
+        topics++;
         // console.log("add", count);
         let attendence = document.createElement("div");
         attendence.classList.add("accordion-item");
@@ -464,14 +490,27 @@ console.log('outside',attendence_number)
         <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingThree">
           <div class="accordion-body">
           <form id='innerFormAttendece_${attendence_number}'>
+          <div class="innerAttendenceBlock">
               <input type="date" placeholder="date" name='attendence[${attendence_number}]' id='attendence_date_${attendence_number}' name="Date" class="form-control datesInput">
               <select name="attendence[${attendence_number}][status]" id="attendence-${attendence_number}" class="form-control status">
                   <option value="Status">--Status--</option>
                   <option value="Present">Present</option>
                   <option value="Absent">Absent</option>
               </select>
+          </div>
+          <div class="error" id="attendence_${attendence_number}_error"></div>
+              <div class="form-group topicsCovered" >
+                                    <div class="topicsCoveredHeading">
+                                        <label for="topics-covered" >Topics Covered</label>
+                                        <input type="text" name="topicsCovered" id="topics_covered${attendence_number}" class="form-control" required="">
+                                    </div>
+                                    <div class="topicsCoveredCheckbox" id="topicsCoveredCheckbox">
+                                        
+                                    </div>
+                                    <div class="error" id="topicsCoveredCheckboxError${attendence_number}"></div>
+                                </div>
               </form>
-              <div class="error" id="attendence_${attendence_number}_error"></div>
+              
           </div>
         </div>`;
         attendence_block.appendChild(attendence);
@@ -483,3 +522,4 @@ console.log('outside',attendence_number)
   }
 
 }
+

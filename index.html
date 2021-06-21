@@ -16,20 +16,21 @@
 <body>
     <div class="container">
         <div class="loader" id="loader">
-            <div id = "cupcake" class = "box">
-                <span class = "letter">L</span>
-            
-                <div class = "cupcakeCircle box">
-                    <div class = "cupcakeInner box">
-                        <div class = "cupcakeCore box"></div>
-                        
-                    </div></div>
-                
-                <span class = "letter box">A</span>
-                <span class = "letter box">D</span>
-                <span class = "letter box">I</span>
-                <span class = "letter box">N</span>
-                <span class = "letter box">G</span>
+            <div id="cupcake" class="box">
+                <span class="letter">L</span>
+
+                <div class="cupcakeCircle box">
+                    <div class="cupcakeInner box">
+                        <div class="cupcakeCore box"></div>
+
+                    </div>
+                </div>
+
+                <span class="letter box">A</span>
+                <span class="letter box">D</span>
+                <span class="letter box">I</span>
+                <span class="letter box">N</span>
+                <span class="letter box">G</span>
             </div>
         </div>
         <div class="row">
@@ -69,16 +70,7 @@
                                 </div>
 
 
-                                <div class="form-group topicsCovered" >
-                                    <div class="topicsCoveredHeading">
-                                        <label for="topics-covered" >Topics Covered</label>
-                                        <input type="text" name="topicsCovered" id="topics_covered" class="form-control" required="">
-                                    </div>
-                                    <div class="topicsCoveredCheckbox" id="topicsCoveredCheckbox">
-                                        
-                                    </div>
-                                    <div class="error" id="topicsCoveredCheckboxError"></div>
-                                </div>
+
 
 
                                 <div class="form-group">
@@ -96,15 +88,30 @@
                                                 aria-labelledby="panelsStayOpen-headingOne">
                                                 <div class="accordion-body">
                                                     <form action="" id="innerFormAttendece_1">
-                                                        <input type="date" placeholder="date" name="attendence[1]"
-                                                            id='attendence_date_1' class="form-control datesInput">
-                                                        <select name="attendence[1][status]" id="attendence-1"
-                                                            class="form-control status">
-                                                            <option value="Status">--Status--</option>
-                                                            <option value="Present">Present</option>
-                                                            <option value="Absent">Absent</option>
-                                                        </select>
+                                                        <div class="innerAttendenceBlock">
+                                                            <input type="date" placeholder="date" name="attendence[1]"
+                                                                id='attendence_date_1' class="form-control datesInput">
+                                                            <select name="attendence[1][status]" id="attendence-1"
+                                                                class="form-control status">
+                                                                <option value="Status">--Status--</option>
+                                                                <option value="Present">Present</option>
+                                                                <option value="Absent">Absent</option>
+                                                            </select>
+                                                        </div>
                                                         <div class="error" id="attendence_1_error"></div>
+                                                        <div class="form-group topicsCovered">
+                                                            <div class="topicsCoveredHeading">
+                                                                <label for="topics-covered">Topics Covered</label>
+                                                                <input type="text" name="topicsCovered"
+                                                                    id="topics_covered1" class="form-control"
+                                                                    required="">
+                                                            </div>
+                                                            <div class="topicsCoveredCheckbox"
+                                                                id="topicsCoveredCheckbox">
+
+                                                            </div>
+                                                            <div class="error" id="topicsCoveredCheckboxError1"></div>
+                                                        </div>
                                                     </form>
 
 
@@ -122,7 +129,7 @@
                             <!-- form -->
                         </div>
                         <!-- end -->
-                        
+
                         <div class="button-row">
 
                             <button value="Submit" class="submit btn active" id="submit">Submit</button>
