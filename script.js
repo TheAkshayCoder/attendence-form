@@ -386,13 +386,13 @@ submit.addEventListener("click", function () {
     // formDataGlobal["topicsCovered"] = topicsCovered.value;
     formDataGlobal["attendence"] = attendenceValue;
     console.log(formDataGlobal);
-    // register(formDataGlobal)
-    //   .then((data) => {
-    //     console.log("promise completed", data);
-    //   })
-    //   .catch((err) => {
-    //     console.log(err);
-    //   });
+    register(formDataGlobal)
+      .then((data) => {
+        console.log("promise completed", data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 });
 
