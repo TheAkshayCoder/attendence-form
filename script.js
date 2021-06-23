@@ -346,6 +346,12 @@ submit.addEventListener("click", function () {
       let attendence_date = document.getElementById(
         "attendence_date_" + i
       ).value;
+        
+      let year = attendence_date.slice(0,4)
+      let month = attendence_date.slice(5,7)
+      let date= attendence_date.slice(8,9+1)
+      
+       attendence_date=`${date}-${month}-${year}`
       // console.log('att. date',attendence_date)
       let attendence_status = document.getElementById("attendence-" + i);
       let attendence_status_value =
