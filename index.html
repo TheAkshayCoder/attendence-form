@@ -71,7 +71,15 @@
 
 
 
-
+                                <div class="form-group">
+                                    <div class="topicsCoveredHeading">
+                                        <label for="topics-covered">Learning Outcome</label>
+                                        <input type="text" name="learningOutcome"
+                                            id="learningOutcome" class="form-control"
+                                            required="">
+                                    </div>
+                                    <div class="error" id="learningOutcomeError"></div>
+                                </div>
 
                                 <div class="form-group">
                                     <div class="accordion" id="accordionPanelsStayOpenExample">
@@ -112,6 +120,7 @@
                                                             </div>
                                                             <div class="error" id="topicsCoveredCheckboxError1"></div>
                                                         </div>
+                                                        
                                                     </form>
 
 
@@ -121,6 +130,8 @@
                                         </div>
                                     </div>
                                 </div>
+
+                                
                                 <!-- <div class="button">
                                     <button type="button" class="btn btn-success" id="add_attendence">Add</button>
                                     <button type="button" class="btn btn-danger" id="remove_attendence">Remove</button>

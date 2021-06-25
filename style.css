@@ -329,7 +329,7 @@ li span:nth-child(2){
   #loader{
     z-index: 2;
     background: grey;
-    height :120vh;
+    height :150vh;
     position: absolute;
     top: 0;
     bottom: 0;

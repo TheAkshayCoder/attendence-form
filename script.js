@@ -131,7 +131,8 @@ const sessions_rescheduled_error = document.getElementById(
   "sessions_rescheduled_error"
 );
 const sessions_rescheduled = document.getElementById("sessions_rescheduled");
-
+const learningOutcome = document.getElementById('learningOutcome')
+const learningOutcomeError = document.getElementById('learningOutcomeError')
 // let form_content_box = document.getElementsByClassName("form-content-box");
 // console.log(form_content_box);
 
@@ -229,6 +230,10 @@ submit.addEventListener("click", function () {
   ) {
     sessions_rescheduled_error.classList.remove("active");
   }
+  if (learningOutcome.value==""){
+    learningOutcomeError.classList.add('active')
+    learningOutcomeError.innerHTML=`**Please enter the learning outcome field`
+  } 
 
   // console.log(typeof missed_sessions_value)
   if (
@@ -287,7 +292,7 @@ submit.addEventListener("click", function () {
   //   }
   // }
 
-
+  
   count = attendence_number;
   for (i = 0; i < attendence_number; i++) {
     let status1 = document.getElementById("attendence-" + (i + 1));
@@ -333,9 +338,10 @@ submit.addEventListener("click", function () {
   if (
     count == 0 &&
     missed_sessions_value + sessions_rescheduled_value <=
-      sessions_completed_value && topics == 0
+      sessions_completed_value && topics == 0 && learningOutcome.value.length>0
   ) {
     // console.log('all done',missed_sessions_value + sessions_rescheduled_value)
+    learningOutcomeError.classList.remove('active')
     for (i = 0; i < attendence_number; i++) {
       let status1 = document.getElementById("attendence-" + (i + 1));
       console.log(formDate[i].value, status1.value);
@@ -391,7 +397,9 @@ submit.addEventListener("click", function () {
     formDataGlobal["numberOfSessionRescheduled"] = sessions_rescheduled.value;
     // formDataGlobal["topicsCovered"] = topicsCovered.value;
     formDataGlobal["attendence"] = attendenceValue;
+    formDataGlobal['learningOutcome']=learningOutcome.value
     console.log(formDataGlobal);
+    
     register(formDataGlobal)
       .then((data) => {
         console.log("promise completed", data);
