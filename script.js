@@ -2,6 +2,8 @@ const No_of_sessions_completed = document.getElementById(
   "No._of_sessions_completed"
 );
 
+const totalNoOfSessions = document.getElementById('No._of_sessions_completedInThisCourse')
+
 
 // var no_sessionsCompleted_value = parseInt(No_of_sessions_completed.value, 10);
 
@@ -134,6 +136,7 @@ const sessions_rescheduled_error = document.getElementById(
 const sessions_rescheduled = document.getElementById("sessions_rescheduled");
 const learningOutcome = document.getElementById('learningOutcome')
 const learningOutcomeError = document.getElementById('learningOutcomeError')
+const No_of_sessions_completedInThisCourse_error = document.getElementById('No._of_sessions_completedInThisCourse_error')
 // let form_content_box = document.getElementsByClassName("form-content-box");
 // console.log(form_content_box);
 
@@ -233,7 +236,10 @@ submit.addEventListener("click", function () {
   if (learningOutcome.value==""){
     learningOutcomeError.classList.add('active')
     learningOutcomeError.innerHTML=`**Please enter the learning outcome field`
-  } 
+  } if (totalNoOfSessions.value==""||totalNoOfSessions.value<=0){
+    No_of_sessions_completedInThisCourse_error.classList.add('active')
+    No_of_sessions_completedInThisCourse_error.innerHTML=`**Please enter the right number of the sessions completed`
+  }
 
   // console.log(typeof missed_sessions_value)
   if (
@@ -349,9 +355,10 @@ submit.addEventListener("click", function () {
   if (
     count == 0 &&
     missed_sessions_value + sessions_rescheduled_value <=
-      sessions_completed_value && topics == 0 && learningOutcome.value.length>0 && topicsLength==0
+      sessions_completed_value && topics == 0 && learningOutcome.value.length>0 && topicsLength==0 && totalNoOfSessions.value>0 
   ) {
     // console.log('all done',missed_sessions_value + sessions_rescheduled_value)
+    No_of_sessions_completedInThisCourse_error.classList.remove('active')
     learningOutcomeError.classList.remove('active')
     for (i = 0; i < attendence_number; i++) {
       let status1 = document.getElementById("attendence-" + (i + 1));
@@ -403,7 +410,7 @@ submit.addEventListener("click", function () {
     let year=todayDate.getFullYear()
 
     formDataGlobal['dor']= `${date}/${month+1}/${year}`
-    formDataGlobal["numberOfSessionCompleted"] = No_of_sessions_completed.value;
+    formDataGlobal["numberOfSessionCompleted"] = totalNoOfSessions.value;
     formDataGlobal["numberOfMissedSession"] = missed_sessions.value;
     formDataGlobal["numberOfSessionRescheduled"] = sessions_rescheduled.value;
     formDataGlobal["attendence"] = attendenceValue;
