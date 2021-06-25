@@ -1,7 +1,7 @@
 const No_of_sessions_completed = document.getElementById(
   "No._of_sessions_completed"
 );
-console.log(No_of_sessions_completed.value)
+
 
 // var no_sessionsCompleted_value = parseInt(No_of_sessions_completed.value, 10);
 
@@ -34,6 +34,7 @@ console.log(No_of_sessions_completed.value)
 // console.log(topicCoveredCheckList);
 var count = 1;
 var topics=1;
+var topicsLength=1;
 let attendence_number = 1;
 
 var formDataGlobal = {};
@@ -187,8 +188,7 @@ submit.addEventListener("click", function () {
   var sessions_completed_value = parseInt(No_of_sessions_completed.value, 10);
 
   // console.log(typeof sessions_rescheduled_value);
-  console.log('hello')
-  console.log(missed_sessions.value.length)
+  
 
 
   if (
@@ -294,6 +294,9 @@ submit.addEventListener("click", function () {
 
   
   count = attendence_number;
+  topics = attendence_number;
+  topicsLength = attendence_number;
+  console.log('after topicslength = attendence_number',topicsLength);
   for (i = 0; i < attendence_number; i++) {
     let status1 = document.getElementById("attendence-" + (i + 1));
     let topicsCovered=document.getElementById('topics_covered'+(i + 1))
@@ -332,13 +335,21 @@ submit.addEventListener("click", function () {
     } if (topicsCovered.value!==""){
       topics--
       topicsCoveredCheckboxError.classList.remove('active')
+    } if (topicsCovered.value.length>=35){
+      topicsCoveredCheckboxError.classList.add('active')
+      topicsCoveredCheckboxError.innerHTML=`**Please enter the topics covered character length less then 35`
+    } if (topicsCovered.value.length<35&&topicsCovered.value!==""){
+      topicsLength--
+      topicsCoveredCheckboxError.classList.remove('active')
     }
   }
+
+
 
   if (
     count == 0 &&
     missed_sessions_value + sessions_rescheduled_value <=
-      sessions_completed_value && topics == 0 && learningOutcome.value.length>0
+      sessions_completed_value && topics == 0 && learningOutcome.value.length>0 && topicsLength==0
   ) {
     // console.log('all done',missed_sessions_value + sessions_rescheduled_value)
     learningOutcomeError.classList.remove('active')
@@ -395,7 +406,6 @@ submit.addEventListener("click", function () {
     formDataGlobal["numberOfSessionCompleted"] = No_of_sessions_completed.value;
     formDataGlobal["numberOfMissedSession"] = missed_sessions.value;
     formDataGlobal["numberOfSessionRescheduled"] = sessions_rescheduled.value;
-    // formDataGlobal["topicsCovered"] = topicsCovered.value;
     formDataGlobal["attendence"] = attendenceValue;
     formDataGlobal['learningOutcome']=learningOutcome.value
     console.log(formDataGlobal);
@@ -491,6 +501,7 @@ console.log('outside',attendence_number)
     attendence_number++;
         count++;
         topics++;
+        topicsLength++;
         // console.log("add", count);
         let attendence = document.createElement("div");
         attendence.classList.add("accordion-item");
