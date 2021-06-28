@@ -136,6 +136,8 @@ const sessions_rescheduled_error = document.getElementById(
 const sessions_rescheduled = document.getElementById("sessions_rescheduled");
 const learningOutcome = document.getElementById('learningOutcome')
 const learningOutcomeError = document.getElementById('learningOutcomeError')
+const hoursPerWeek = document.getElementById('hoursPerWeek')
+const hoursPerWeekError = document.getElementById('hoursPerWeekError')
 const No_of_sessions_completedInThisCourse_error = document.getElementById('No._of_sessions_completedInThisCourse_error')
 // let form_content_box = document.getElementsByClassName("form-content-box");
 // console.log(form_content_box);
@@ -354,6 +356,11 @@ submit.addEventListener("click", function () {
     } if (topicsCovered.value.length<35&&topicsCovered.value!==""){
       topicsLength--
       topicsCoveredCheckboxError.classList.remove('active')
+    } 
+    console.log(typeof parseInt(hoursPerWeek.value))
+    if (hoursPerWeek.value==""||parseInt(hoursPerWeek.value)<0||parseInt(hoursPerWeek.value)>2){
+      hoursPerWeekError.classList.add('active')
+      hoursPerWeekError.innerHTML=`**Hours per week should be between 0 and 2`
     }
   }
 
@@ -362,7 +369,7 @@ submit.addEventListener("click", function () {
   if (
     count == 0 &&
     missed_sessions_value + sessions_rescheduled_value <=
-      sessions_completed_value && topics == 0 && learningOutcome.value.length>0 && topicsLength==0 && totalNoOfSessions.value>0 && learningOutcome.value.length<70
+      sessions_completed_value && topics == 0 && learningOutcome.value.length>0 && topicsLength==0 && totalNoOfSessions.value>0 && learningOutcome.value.length<70 && parseInt(hoursPerWeek.value)<=2 && parseInt(hoursPerWeek.value)>0
   ) {
     // console.log('all done',missed_sessions_value + sessions_rescheduled_value)
     No_of_sessions_completedInThisCourse_error.classList.remove('active')
@@ -420,6 +427,7 @@ submit.addEventListener("click", function () {
     formDataGlobal["numberOfSessionCompleted"] = totalNoOfSessions.value;
     formDataGlobal["numberOfMissedSession"] = missed_sessions.value;
     formDataGlobal["numberOfSessionRescheduled"] = sessions_rescheduled.value;
+    formDataGlobal["hoursPerWeek"] = hoursPerWeek.value;
     formDataGlobal["attendence"] = attendenceValue;
     formDataGlobal['learningOutcome']=learningOutcome.value
     console.log(formDataGlobal);
