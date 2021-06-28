@@ -236,9 +236,16 @@ submit.addEventListener("click", function () {
   if (learningOutcome.value==""){
     learningOutcomeError.classList.add('active')
     learningOutcomeError.innerHTML=`**Please enter the learning outcome field`
-  } if (totalNoOfSessions.value==""||totalNoOfSessions.value<=0){
+  } if (learningOutcome.value==""){
+    learningOutcomeError.classList.remove('active')
+  }  
+  
+  if (totalNoOfSessions.value==""||totalNoOfSessions.value<=0){
     No_of_sessions_completedInThisCourse_error.classList.add('active')
     No_of_sessions_completedInThisCourse_error.innerHTML=`**Please enter the right number of the sessions completed`
+  } if (learningOutcome.value.length>=70){
+    learningOutcomeError.classList.add('active')
+    learningOutcomeError.innerHTML=`**The learning outcome field lenght should be less then 70 characters`
   }
 
   // console.log(typeof missed_sessions_value)
@@ -355,7 +362,7 @@ submit.addEventListener("click", function () {
   if (
     count == 0 &&
     missed_sessions_value + sessions_rescheduled_value <=
-      sessions_completed_value && topics == 0 && learningOutcome.value.length>0 && topicsLength==0 && totalNoOfSessions.value>0 
+      sessions_completed_value && topics == 0 && learningOutcome.value.length>0 && topicsLength==0 && totalNoOfSessions.value>0 && learningOutcome.value.length<70
   ) {
     // console.log('all done',missed_sessions_value + sessions_rescheduled_value)
     No_of_sessions_completedInThisCourse_error.classList.remove('active')
